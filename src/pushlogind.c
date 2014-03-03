@@ -1,21 +1,25 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "config.h"
 #include "lastlog.h"
+#include "inotify.h"
 #include "curl.h"
 
 int main() {
-  CURL *curl = curl_init("aa", "aa");
-  int fd = watch_lastlog();
-  char buf[BUF_LEN];
-  ssize_t numread;
+  CURL *curl = curl_init(TOKEN, USER);
+  struct watcher watcher = watch(LASTLOG);
+  struct inotify_event *event;
+  char buf[EVENT_SIZE];
+  ssize_t bytes;
 
   for(;;) {
-    numread = read(fd, buf, BUF_LEN);
-    for (p = buf; p < buf + numread; p += sizeof(struct inotify_event) + event->len)
-      curl_push();
+    sleep(FREQUENCY);
+    bytes = read(watcher.fd, buf, EVENT_SIZE);
+    if(bytes == EVENT_SIZE) {
+      /* event = (struct inotify_event *) buf; */
+      curl_easy_perform(curl);
+    }
   }
 
   curl_cleanup(curl);
-  close_lastlog();
+  unwatch(&watcher);
   return 0;
 }
