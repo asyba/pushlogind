@@ -22,6 +22,7 @@ int main() {
     if(bytes == EVENT_SIZE) {
       fp = fopen(LASTLOG, "rb");
       fread(ll, LSIZE, ssize, fp);
+      
       for(int i = 0; i < ssize; i++) {
         if(ll[i].ll_time > recent.ll_time) {
           recent = ll[i];
