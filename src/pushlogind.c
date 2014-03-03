@@ -13,7 +13,7 @@ int main() {
   signed int ssize = ll_size();
   struct lastlog ll[ssize];
   struct lastlog recent;
-  signed int recent_id;
+  signed int recent_id, i;
   FILE *fp;
 
   for(;;) {
@@ -23,7 +23,7 @@ int main() {
       fp = fopen(LASTLOG, "rb");
       fread(ll, LSIZE, ssize, fp);
       
-      for(int i = 0; i < ssize; i++) {
+      for(i = 0; i < ssize; i++) {
         if(ll[i].ll_time > recent.ll_time) {
           recent = ll[i];
           recent_id = i;
