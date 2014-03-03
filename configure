@@ -12,5 +12,5 @@ options = [
 with open('src/config.h', 'w') as f:
   for o in options:
     value = getattr(settings, o.dest)
-    if isinstance(value, basestring): value = '"%s"' % value
+    if type(value) is str: value = '"%s"' % value
     f.write("#define %s %s\n" % (o.dest.upper(), value))
