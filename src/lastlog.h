@@ -11,7 +11,3 @@ signed int ll_size() {
   fclose(fp);
   return ssize;
 }
-
-int ll_compare(struct lastlog a, struct lastlog b) {
-  return a.ll_time - b.ll_time;
-}
