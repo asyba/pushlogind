@@ -1,16 +1,23 @@
 #include <curl/curl.h>
+#include <stdio.h>
 
-CURL *curl_init(const char *token, const char *user) {
+static inline void curl_push(CURL *curl, int id, struct lastlog *ll) {
+  char *post;
+  asprintf(&post, "token=%s&user=%s&message=%s+has+logged+in+from+%s+(%s)", TOKEN, USER,
+    getpwuid(id)->pw_name, ll->ll_host, ll->ll_line);
+
+  curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post);
+  curl_easy_perform(curl);
+}
+
+CURL *curl_init() {
   CURL *curl;
   char *post;
  
   curl_global_init(CURL_GLOBAL_ALL);
   curl = curl_easy_init();
 
-  asprintf(&post, "token=%s&user=%s&message=%s", token, user, "Someone+has+logged+in!");
   curl_easy_setopt(curl, CURLOPT_URL, "https://api.pushover.net/1/messages.json");
-  curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post);
-
   return curl;
 }
 
