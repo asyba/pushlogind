@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+from optparse import *
+
+options = [
+  make_option("-f", "--frequency", dest="frequency", default=15),
+  make_option("-t", "--token", dest="token"),
+  make_option("-u", "--user", dest="user")
+]
+
+(settings,_) = OptionParser(option_list=options).parse_args()
+
+with open('src/config.h', 'w') as f:
+  for o in options:
+    value = getattr(settings, o.dest)
+    if isinstance(value, basestring): value = '"%s"' % value
+    f.write("#define %s %s\n" % (o.dest.upper(), value))
