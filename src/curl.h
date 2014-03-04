@@ -11,9 +11,7 @@ static inline void curl_push(CURL *curl, struct ll_user user) {
 }
 
 CURL *curl_init() {
-  CURL *curl;
-  char *post;
- 
+  CURL *curl; 
   curl_global_init(CURL_GLOBAL_ALL);
   curl = curl_easy_init();
 
