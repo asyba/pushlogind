@@ -20,6 +20,7 @@ inline void unwatch(struct watcher *watcher) {
   (void) inotify_rm_watch(watcher->fd, watcher->wd);
   (void) close(watcher->fd);
 }
+
 signed int inread(char buf[], struct watcher *watcher) {
   return read(watcher->fd, buf, EVENT_SIZE);
 }
