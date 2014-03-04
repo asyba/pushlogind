@@ -39,6 +39,8 @@ int main() {
 
       curl_push(curl, recent_id, &ll[recent_id]);
       fclose(fp);
+    if(inread(event, &watcher) == EVENT_SIZE) {
+      inread(event, &watcher);
     }
   }
 
