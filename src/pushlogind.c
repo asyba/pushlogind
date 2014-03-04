@@ -6,15 +6,15 @@
 int main() {
   CURL *curl = curl_init(TOKEN, USER);
 
-  /* Inotify-related: initialize a watcher,
-   * and create a 1-slot event buffer.
+  /* Inotify-related -- initialize a watcher,
+   * and create a 1-slot event buffer:
    */
   struct watcher watcher = watch(LL_PATH);
   char event[EVENT_SIZE];
 
-  /* All about /var/log/lastlog: count
+  /* All about /var/log/lastlog -- count
    * number of possible users and allocate
-   * a buffer for parsing lastlog.
+   * a buffer for parsing the file:
    */
   signed int users = ll_count();
   struct lastlog ll[users];
