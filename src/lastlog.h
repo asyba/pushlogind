@@ -2,7 +2,7 @@
 #include <pwd.h>
 
 #define LL_PATH  "/var/log/lastlog"
-#define LL_SSIZE sizeof(struct lastlog)
+#define LL_SSIZE (sizeof(struct lastlog))
 
 signed int ll_count() {
 struct ll_user {
