@@ -3,8 +3,8 @@
 
 static inline void curl_push(CURL *curl, struct ll_user user) {
   char *post;
-  asprintf(&post, "token=%s&user=%s&sound=%s&priority=%s&message=%s+has+logged+in+from+%s+(%s)", TOKEN, USER,
-    SOUND, PRIORITY, getpwuid(id)->pw_name, ll->ll_host, ll->ll_line);
+  asprintf(&post, "token=%s&user=%s&sound=%s&priority=%d&message=%s+has+logged+in+from+%s+(%s)", TOKEN, USER,
+    SOUND, PRIORITY, getpwuid(user.id)->pw_name, user.ll.ll_host, user.ll.ll_line);
 
   curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post);
   curl_easy_perform(curl);
