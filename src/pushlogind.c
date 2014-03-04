@@ -29,14 +29,13 @@ int main() {
 
     if(read(watcher.fd, event, EVENT_SIZE) == EVENT_SIZE) {
       fp = fopen(LL_PATH, "rb");
-      fread(ll, LL_SSIZE, users, fp);
-      
-      for(i = 0; i < users; i++) {
-        if(ll[i].ll_time > recent.ll_time) {
-          recent = ll[i];
-          recent_id = i;
-        }
-      }
+
+      if(fread(ll, LL_SSIZE, users, fp) != 1)    
+        for(i = 0; i < users; i++)
+          if(ll[i].ll_time > recent.ll_time) {
+            recent = ll[i];
+            recent_id = i;
+          }
 
       curl_push(curl, recent_id, &ll[recent_id]);
       fclose(fp);
