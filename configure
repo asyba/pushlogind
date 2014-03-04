@@ -2,8 +2,8 @@
 from optparse import *
 
 options = [
-  make_option('-f', '--frequency', dest='frequency', default=15),
-  make_option('-p', '--priority', dest='priority', default=1),
+  make_option('-f', '--frequency', dest='frequency', type="int", default=15),
+  make_option('-p', '--priority', dest='priority', type="int", default=1),
   make_option('-s', '--sound', dest='sound', default='bike'),
   make_option('-t', '--token', dest='token'),
   make_option('-u', '--user', dest='user')
