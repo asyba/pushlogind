@@ -20,12 +20,12 @@ int main() {
   struct lastlog ll[users];
 
   for(;;) {
-    if(inread(event, &watcher) == EVENT_SIZE) {
-      /* We need this double inread() call because
+    if(wread(event, &watcher) == EVENT_SIZE) {
+      /* We need this double wread() call because
        * there are actually two modify events occur
        * each login.
        */
-      inread(event, &watcher);
+      wread(event, &watcher);
       if(ll_read(ll, users) != 1)
         curl_push(curl, ll_recent(ll, users));
     }
