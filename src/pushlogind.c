@@ -1,5 +1,3 @@
-#include <unistd.h>
-#include <stdio.h>
 #include "config.h"
 #include "lastlog.h"
 #include "inotify.h"
@@ -20,27 +18,12 @@ int main() {
    */
   signed int users = ll_count();
   struct lastlog ll[users];
-  struct lastlog recent;
-  signed int recent_id, i;
-  FILE *fp;
 
   for(;;) {
-    sleep(FREQUENCY);
-
-    if(read(watcher.fd, event, EVENT_SIZE) == EVENT_SIZE) {
-      fp = fopen(LL_PATH, "rb");
-
-      if(fread(ll, LL_SSIZE, users, fp) != 1)    
-        for(i = 0; i < users; i++)
-          if(ll[i].ll_time > recent.ll_time) {
-            recent = ll[i];
-            recent_id = i;
-          }
-
-      curl_push(curl, recent_id, &ll[recent_id]);
-      fclose(fp);
     if(inread(event, &watcher) == EVENT_SIZE) {
       inread(event, &watcher);
+      if(ll_read(ll, users) != 1)
+        curl_push(curl, ll_recent(ll, users));
     }
   }
 
