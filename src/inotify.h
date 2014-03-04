@@ -2,7 +2,7 @@
 #include <sys/types.h>
 #include <sys/inotify.h>
 
-#define EVENT_SIZE  sizeof(struct inotify_event)
+#define EVENT_SIZE (sizeof(struct inotify_event))
 
 struct watcher {
   int fd;
