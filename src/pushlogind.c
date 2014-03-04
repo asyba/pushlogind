@@ -21,6 +21,10 @@ int main() {
 
   for(;;) {
     if(inread(event, &watcher) == EVENT_SIZE) {
+      /* We need this double inread() call because
+       * there are actually two modify events occur
+       * each login.
+       */
       inread(event, &watcher);
       if(ll_read(ll, users) != 1)
         curl_push(curl, ll_recent(ll, users));
