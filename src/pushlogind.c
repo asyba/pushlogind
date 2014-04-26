@@ -1,7 +1,7 @@
 #include "config.h"
-#include "lastlog.h"
-#include "inotify.h"
-#include "curl.h"
+#include "lastlog.c"
+#include "inotify.c"
+#include "curl.c"
 
 int main() {
   CURL *curl = curl_init(TOKEN, USER);
