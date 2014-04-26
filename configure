@@ -1,11 +1,16 @@
 #!/usr/bin/env python
 from optparse import *
 
+desc = """This script generates src/config.h so the program could compile.
+That means you should recompile the program to change the user or device.
+Choose options to configure: remember that --user and --token options
+are required."""
+
 options = [
-  make_option('-p', '--priority', dest='priority', type="int", default=1),
-  make_option('-s', '--sound', dest='sound', default='bike'),
+  make_option('-u', '--user', dest='user'),
   make_option('-t', '--token', dest='token'),
-  make_option('-u', '--user', dest='user')
+  make_option('-p', '--priority', dest='priority', default='0'),
+  make_option('-s', '--sound', dest='sound', default='bike')
 ]
 
 (settings,_) = OptionParser(option_list=options).parse_args()
