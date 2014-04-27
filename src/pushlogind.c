@@ -1,10 +1,9 @@
-#include "config.h"
 #include "lastlog.c"
 #include "inotify.c"
 #include "curl.c"
 
 int main() {
-  CURL *curl = curl_init(TOKEN, USER);
+  CURL *curl = curl_init();
 
   /* Inotify-related -- initialize a watcher,
    * and create a 1-slot event buffer:
