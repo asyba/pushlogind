@@ -1,6 +1,7 @@
 #include <curl/curl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "config.h"
 
 #define QUERY "token=" TOKEN "&user=" USER "&sound=" SOUND \
               "&priority=" PRIORITY "&message=%s+has+logged+in+from+%s+(%s)"
