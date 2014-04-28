@@ -1,5 +1,6 @@
 #include <curl/curl.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define QUERY "token=" TOKEN "&user=" USER "&sound=" SOUND \
               "&priority=" PRIORITY "&message=%s+has+logged+in+from+%s+(%s)"
@@ -23,8 +24,7 @@ CURL *push_init() {
  */
 static inline void push(CURL *curl, struct ll_user user) {
   char *post;
-  asprintf(&post, QUERY,
-    getpwuid(user.id)->pw_name, user.ll.ll_host, user.ll.ll_line);
+  asprintf(&post, QUERY, getpwuid(user.id)->pw_name, user.ll.ll_host, user.ll.ll_line);
 
   curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post);
   curl_easy_perform(curl);
