@@ -1,6 +1,6 @@
 #include "lastlog.c"
 #include "inotify.c"
-#include "curl.c"
+#include "pushover.c"
 
 int main() {
   CURL *curl = push_init();
