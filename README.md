@@ -1,9 +1,9 @@
-Pushover
-========
+Pushlogind
+==========
 
 An Efficient Linux-specific login monitor for your Pushover. It pushes you when
-someone logins on your machine.Written in C, uses almost no resources beacuse
-of Inotify, /var/log/lastlog and cURL.
+someone logins on your machine. Written in C, uses almost no resources beacuse
+of Inotify, `/var/log/lastlog` and cURL.
 
 This program can't work without Pushover. Get yourself one if you haven't
 already: <https://pushover.net>
