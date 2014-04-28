@@ -5,7 +5,8 @@
 #define LL_PATH  "/var/log/lastlog"
 #define LL_SSIZE (sizeof(struct lastlog))
 
-/* Counts total amount of users in /var/log/lastlog:
+/**
+ * Counts total amount of users in /var/log/lastlog.
  */
 int ll_count() {
   FILE *fp = fopen(LL_PATH, "rb");
@@ -15,7 +16,8 @@ int ll_count() {
   return size;
 }
 
-/* Reads and returns lastlog structs from /var/log/lastlog:
+/**
+ * Reads and returns lastlog structs from /var/log/lastlog.
  */
 int ll_read(struct lastlog *ll, signed int entries) {
   FILE *fp = fopen(LL_PATH, "rb");
@@ -24,15 +26,17 @@ int ll_read(struct lastlog *ll, signed int entries) {
   return code;
 }
 
-/* Describes a user taken out of /var/log/lastlog:
+/**
+ * Describes a user taken out of /var/log/lastlog.
  */
 struct ll_user {
   int id;
   struct lastlog ll;
 };
 
-/* Takes an array of lastlog structs (see /usr/include/bits/utmp.h)
- * and finds the user with the most recent timestamp:
+/**
+ * Takes an array of lastlog structs (see /usr/include/bits/utmp.h)
+ * and finds the user with the most recent timestamp.
  */
 struct ll_user ll_recent(struct lastlog *ll, signed int entries) {
   struct ll_user recent;

@@ -9,7 +9,8 @@ struct watcher {
   int wd;
 };
 
-/* Initializes a IN_MODIFY watcher and returns a watcher struct:
+/**
+ * Initializes a IN_MODIFY watcher and returns a watcher struct.
  */
 struct watcher watch(const char *file) {
   int fd = inotify_init();
@@ -18,7 +19,8 @@ struct watcher watch(const char *file) {
   return watcher;
 }
 
-/* Reads a single event from watcher and returns a read() code:
+/**
+ * Reads a single event from watcher and returns a read() code.
  */
 signed int wread(char buf[], struct watcher *watcher) {
   return read(watcher->fd, buf, EVENT_SIZE);
