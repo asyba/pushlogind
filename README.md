@@ -42,7 +42,7 @@ you don’t know what it is). For example:
 Configure script is written in Python, so if you haven’t got it, go directly to
 `src/config.h` and make the changes as described there in the comments.
 
-Then run `make install`. It will compile the program and put it into `/usr/bin`.
+Then run `make install` to compile the program and will put it into `/usr/bin`.
 It will also put an init script to `/etc/init.d` if the folder is detected.
 Alternatively you can run `make` and decide yourself where to put it.
 
